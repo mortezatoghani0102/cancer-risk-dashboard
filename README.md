@@ -4,7 +4,7 @@
 
 ##  Overview
 
-This project aims to develop a robust machine learning model to accurately classify breast cancer tumors as either **malignant (بدخیم)** or **benign (خوش‌خیم)** based on diagnostic measurements. The primary dataset used is the **Wisconsin Breast Cancer dataset**, a well-known benchmark in the machine learning community.
+This project aims to develop a robust machine learning model to accurately classify breast cancer tumors as either **malignant (بدخیم)** or **benign (خوش‌خیم)** based on diagnostic measurements. Early and accurate detection of breast cancer is crucial for improving patient prognosis and survival rates. This project aims to leverage machine learning to create a reliable diagnostic tool that can assist medical professionals in making faster and more accurate classifications.
 
 The entire workflow, from data exploration to final model evaluation, is documented in the accompanying Jupyter Notebook (`Breast_Cancer_Analysis.ipynb`).
 
@@ -15,6 +15,8 @@ The entire workflow, from data exploration to final model evaluation, is documen
 - [Results](#-results)
 - [File Structure](#-file-structure)
 - [How to Run](#-how-to-run)
+- [Limitations and Future Work](#-limitations-and-future-work)
+- [Author](#-author)
 - [Dependencies](#-dependencies)
 
 ---
@@ -40,17 +42,27 @@ The project follows a standard data science workflow:
 
 ## 📊 Results
 
+### Baseline Model Comparison
+The baseline performance of the three models was evaluated using 5-fold cross-validation on the training set. The results clearly indicated that Random Forest was the strongest candidate for further tuning.
+
+| Model                  | Mean Accuracy (CV) |
+| :--------------------- | :----------------: |
+| Logistic Regression    | 97.14%             |
+| Support Vector Machine | 97.36%             |
+| **Random Forest** | **97.58%** |
+
+### Final Model Performance
 The final model, a tuned **Random Forest Classifier**, achieved excellent performance on the test set.
 
 -   **Test Accuracy:** **97.37%**
 -   **Test AUC Score:** **0.998**
 
-### Confusion Matrix
+#### Confusion Matrix
 The confusion matrix below shows the model's predictions on the test set. It correctly identified all malignant cases and only misclassified a few benign cases.
 
 ![Confusion Matrix](results/confusion_matrix.png)
 
-### ROC Curve
+#### ROC Curve
 The ROC curve demonstrates the model's outstanding ability to distinguish between the two classes, with an AUC close to 1.
 
 ![ROC Curve](results/roc_curve.png)
@@ -58,55 +70,3 @@ The ROC curve demonstrates the model's outstanding ability to distinguish betwee
 ---
 
 ## 📁 File Structure
-
-```
-├── final_model.pkl             # Saved final trained model
-├── Breast_Cancer_Analysis.ipynb # Main notebook with all the code
-├── README.md                   # Project documentation (this file)
-├── requirements.txt            # List of required Python libraries
-└── results/
-    ├── confusion_matrix.png    # Saved confusion matrix plot
-    ├── correlation_matrix.png  # Saved correlation heatmap
-    ├── metrics.json            # Final performance metrics
-    ├── roc_curve.png           # Saved ROC curve plot
-    └── target_distribution.png # Plot of target class distribution
-```
-
----
-
-## 🚀 How to Run
-
-To replicate this project on your local machine, follow these steps:
-
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
-    cd your-repo-name
-    ```
-
-2.  **Create a virtual environment (recommended):**
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-    ```
-
-3.  **Install the dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4.  **Run the Jupyter Notebook:**
-    ```bash
-    jupyter notebook Breast_Cancer_Analysis.ipynb
-    ```
----
-
-## 📚 Dependencies
-
-All necessary libraries are listed in the `requirements.txt` file. The primary libraries used are:
--   `pandas`
--   `numpy`
--   `scikit-learn`
--   `matplotlib`
--   `seaborn`
--   `jupyter`
